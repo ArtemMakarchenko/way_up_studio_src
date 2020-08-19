@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/ArtemMakarchenko/gulp-start-project/issues"
   },
-  "homepage": "https://github.com/ArtemMakarchenko/gulp-start-project#readme"
+  "homepage": "https://github.com/ArtemMakarchenko/gulp-start-project#readme",
+  "devDependencies": {
+    "gulp": "^4.0.2"
+  }
 }
