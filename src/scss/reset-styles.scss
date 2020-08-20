@@ -1,0 +1,31 @@
+/*===================================== Обнуление стилей =======================================*/
+*{margin: 0px;padding: 0px;border: 0px;}
+*,*::before,*::after {box-sizing: border-box;}
+:focus,:active{outline: none;}
+a:focus,a:active{outline: none;}
+nav,footer,header,aside{display: block;}
+input,button,textarea{font-family:inherit;}
+input::-ms-clear{display:none;}
+button{cursor:pointer;}
+button::-moz-focus-inner{padding:0px;border:0px;}
+a,a:visited{text-decoration:none;}
+a:hover{text-decoration:none;}
+ul li{list-style: none;}
+img{max-width:100%;display:block;}
+h1,h2,h3,h4,h5,h6{font-size: inherit;font-weight: 400;}
+html,body{
+    height: 100%;
+    widows: 100%;
+    font-size: 100%;
+    line-height: 1;
+    font-size: 14px;
+    text-size-adjust: 100%;
+}
+@media (prefers-reduced-motion: reduce) {
+*{
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+}
+}
