@@ -1,30 +1,30 @@
-let project_folder= require("path").basename(__dirname);
-let source_folder="src";
+let project_folder = require("path").basename(__dirname);
+let source_folder = "src";
 
 let fs = require('fs');
 
-let path={
-    build:{
+let path = {
+    build: {
         html: project_folder + "/",
         css: project_folder + "/css/",
         js: project_folder + "/js/",
         img: project_folder + "/img/",
         fonts: project_folder + "/fonts/",
     },
-    src:{
+    src: {
         html: [source_folder + "/*.html", "!" + source_folder + "/_*.html"],
         css: source_folder + "/scss/style.scss",
         js: source_folder + "/js/script.js",
         img: source_folder + "/img/**/*.{jpg,png,svg,webp,ico,gif}",
         fonts: source_folder + "/fonts/*.ttf",
     },
-    watch:{
+    watch: {
         html: source_folder + "/**/*.html",
         css: source_folder + "/scss/**/*.scss",
         js: source_folder + "/js/**/*.js",
         img: source_folder + "/img/**/*.{jpg,png,svg,webp,ico,gif}"
     },
-    clean:"./" + project_folder + "/"
+    clean: "./" + project_folder + "/"
 }
 
 let { src, dest } = require('gulp'),
@@ -41,7 +41,7 @@ let { src, dest } = require('gulp'),
     imagemin = require("gulp-imagemin"),
     webp = require("gulp-webp"),
     webphtml = require("gulp-webp-html"),
-    webpcss = require("gulp-webpcss"),
+    webpcss = require("gulp-webp-css"),
     svgSprite = require("gulp-svg-sprite"),
     ttf2woff = require("gulp-ttf2woff"),
     ttf2woff2 = require("gulp-ttf2woff2"),
@@ -65,7 +65,7 @@ function html() {
         .pipe(browsersync.stream())
 }
 
-function css(){
+function css() {
     return src(path.src.css)
         .pipe(
             scss({
@@ -130,7 +130,7 @@ function images() {
         .pipe(browsersync.stream())
 }
 
-function fonts(){
+function fonts() {
     src(path.src.fonts)
         .pipe(ttf2woff())
         .pipe(dest(path.build.fonts));
@@ -171,25 +171,25 @@ function fontsStyle(params) {
                     let fontname = items[i].split('.');
                     fontname = fontname[0];
                     if (c_fontname != fontname) {
-                    fs.appendFile(source_folder + '/scss/fonts.scss', '@include font("' + fontname + '", "' + fontname + '", "400", "normal");\r\n', cb);
+                        fs.appendFile(source_folder + '/scss/fonts.scss', '@include font("' + fontname + '", "' + fontname + '", "400", "normal");\r\n', cb);
                     }
                     c_fontname = fontname;
                 }
-            }       
+            }
         })
     }
 }
-    
+
 function cb() { }
 
-function watchFiles(){
+function watchFiles() {
     gulp.watch([path.watch.html], html);
     gulp.watch([path.watch.css], css);
     gulp.watch([path.watch.js], js);
     gulp.watch([path.watch.img], images);
 }
 
-function clean(){
+function clean() {
     return del(path.clean);
 }
 
